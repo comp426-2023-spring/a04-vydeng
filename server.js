@@ -12,11 +12,6 @@ const app = express()
 
 app.use(express.json())
 
-// default endpoint
-app.get('*', (req, res) => {
-    res.status(404).send('404 NOT FOUND');
-});
-
 app.get('/app', (req, res) => {
     res.status(200).send('200 OK');
 });
@@ -52,6 +47,11 @@ app.get('/app/rps/play/:arg', (req, res) => {
 app.get('/app/rpsls/play/:arg', (req, res) => {
 	res.status(200).send(rpsls(req.params.arg));
 })
+
+// default endpoint
+app.get('*', (req, res) => {
+    res.status(404).send('404 NOT FOUND');
+});
 
 app.listen(PORT, () => {
 	console.log(`App listening on port ${PORT}`);
